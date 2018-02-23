@@ -50,3 +50,5 @@ echo "#################### Keras Install Complete! ####################"
 echo "Installing PyTorch"
 pip install http://download.pytorch.org/whl/cpu/torch-0.3.1-cp27-cp27mu-linux_x86_64.whl
 pip install torchvision
+
+echo "#################### PyTorch Install Complete! ####################"

@@ -40,9 +40,6 @@ pip install tensorflow==1.4.1
 
 echo "#################### Tensorflow Install Complete! ####################"
 
-echo "Installing Theano"
-pip install theano==0.9.0
-
 echo "Installing Keras"
 pip install keras==2.0.8
 

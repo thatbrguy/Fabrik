@@ -32,15 +32,23 @@ fi
 echo "#################### Caffe Install Complete! ####################"
 
 echo "Installing Tensorflow dependencies"
-sudo apt-get install python-pip python-dev google-perftools
-export LD_PRELOAD="/usr/lib/libtcmalloc.so.4" 
+sudo apt-get install python-pip python-dev
 
 echo "Installing Tensorflow"
 pip install tensorflow==1.4.1
 
 echo "#################### Tensorflow Install Complete! ####################"
 
+echo "Installing Theano"
+pip install theano==0.9.0
+
 echo "Installing Keras"
 pip install keras==2.0.8
 
 echo "#################### Keras Install Complete! ####################"
+
+echo "Installing PyTorch"
+pip install http://download.pytorch.org/whl/cpu/torch-0.3.1-cp27-cp27mu-linux_x86_64.whl
+pip install torchvision
+
+echo "#################### PyTorch Install Complete! ####################"

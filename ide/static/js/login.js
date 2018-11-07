@@ -3,6 +3,9 @@ import React from 'react';
 class Login extends React.Component {
   constructor(props) {
     super(props);
+    this.state = {
+      openLoginPanel: false
+    }
     this.tryLogin = this.tryLogin.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
   }
@@ -34,15 +37,25 @@ class Login extends React.Component {
     });
   }
   openLoginPanel() {
-    $('#login-prepanel')[0].classList.add('login-prepanel-enabled');
-    $('#login-prepanel')[0].style.display = 'block';
+    this.setState({
+      openLoginPanel: true
+    });
+    console.log('set true');
   }
   closeLoginPanel() {
-    $('#login-prepanel')[0].classList.remove('login-prepanel-enabled');
+    this.setState({
+      openLoginPanel: false
+    });
+    console.log('set false');
   }
   tryLogin(showNotification) {
-    let username = $('#login-input')[0].value;
-    let password = $('#password-input')[0].value;
+    let username = null;
+    let password = null;
+
+    if (this.state.openLoginPanel) {
+      username = $('#login-input')[0].value;
+      password = $('#password-input')[0].value;
+    }
 
     $.ajax({
       url: '/backendAPI/checkLogin',
@@ -84,32 +97,11 @@ class Login extends React.Component {
     });
   }
   render() {
-    if(this.state.loginState) {
-      return (
-        <div>
-          <h5 className="sidebar-heading" id="sidebar-login-button" onClick={
-            () => {
-              this.logoutUser();
-          }}>
-          <div>LOGOUT</div>
-          </h5>
-          <div id="successful-login-notification">
-            <i className="material-icons">done</i>
-            <div id="successful-login-notification-message"></div>
-          </div>
-        </div>
-      )
-    }
-    else {
-      return (
-        <div>
-          <h5 className="sidebar-heading" id="sidebar-login-button" onClick={
-            () => {
-              this.openLoginPanel();
-            }}>
-            <div>LOGIN</div>
-          </h5>
-          <div id="login-prepanel" onClick={
+    let loginPanel = null;
+    console.log('value ' + this.state.openLoginPanel);
+    if (this.state.openLoginPanel) {
+      loginPanel = (
+        <div id="login-prepanel" className="login-prepanel-enabled" onClick={
               (e) => {
                 if (e.target.id == "login-prepanel" || e.target.id == "login-panel-close") {
                   this.closeLoginPanel();
@@ -186,7 +178,35 @@ class Login extends React.Component {
 
               </div>
             </div> 
+          </div>);
+    }
+
+    if(this.state.loginState) {
+      return (
+        <div>
+          <h5 className="sidebar-heading" id="sidebar-login-button" onClick={
+            () => {
+              this.logoutUser();
+          }}>
+          <div>LOGOUT</div>
+          </h5>
+          <div id="successful-login-notification">
+            <i className="material-icons">done</i>
+            <div id="successful-login-notification-message"></div>
           </div>
+        </div>
+      )
+    }
+    else {
+      return (
+        <div>
+          <h5 className="sidebar-heading" id="sidebar-login-button" onClick={
+            () => {
+              this.openLoginPanel();
+            }}>
+            <div>LOGIN</div>
+          </h5>
+          {loginPanel}
         </div>
       )
     }

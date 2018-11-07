@@ -9,6 +9,7 @@ import data from './data';
 import netLayout from './netLayout_vertical';
 import Modal from 'react-modal';
 import ModelZoo from './modelZoo';
+import Login from './login';
 import ImportTextbox from './importTextbox';
 import UrlImportModal from './urlImportModal';
 import UserProfile from './UserProfile';
@@ -20,7 +21,7 @@ import $ from 'jquery'
 const infoStyle = {
   content : {
     top                   : '50%',
-    left                  : '50%',
+    left                  : '55%',
     right                 : '60%',
     bottom                : 'auto',
     marginRight           : '-50%',
@@ -1306,6 +1307,7 @@ class Content extends React.Component {
               urlModal={this.urlModal}
               updateHistoryModal={this.updateHistoryModal}
              />
+             <Login setUserId={this.setUserId} setUserName={this.setUserName}></Login>
              <h5 className="sidebar-heading">INSERT LAYER</h5>
              <div className="sidebar-heading">
              <FilterBar />

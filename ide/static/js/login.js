@@ -40,13 +40,11 @@ class Login extends React.Component {
     this.setState({
       openLoginPanel: true
     });
-    console.log('set true');
   }
   closeLoginPanel() {
     this.setState({
       openLoginPanel: false
     });
-    console.log('set false');
   }
   tryLogin(showNotification) {
     let username = null;
@@ -98,7 +96,7 @@ class Login extends React.Component {
   }
   render() {
     let loginPanel = null;
-    console.log('value ' + this.state.openLoginPanel);
+
     if (this.state.openLoginPanel) {
       loginPanel = (
         <div id="login-prepanel" className="login-prepanel-enabled" onClick={

@@ -4,7 +4,7 @@ class Login extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      openLoginPanel: false
+      isOpenLoginPanel: false
     }
     this.tryLogin = this.tryLogin.bind(this);
     this.logoutUser = this.logoutUser.bind(this);
@@ -26,8 +26,6 @@ class Login extends React.Component {
           this.setState({ loginState: false });
           this.props.setUserId(null);
           this.props.setUserName(null);
-
-          $('#login-prepanel')[0].style.display = 'none';
         }
       }.bind(this),
       error: function () {
@@ -35,22 +33,23 @@ class Login extends React.Component {
         this.addError("Error occurred while logging out");
       }.bind(this)
     });
+    this.setState({ isOpenLoginPanel: false });
   }
   openLoginPanel() {
     this.setState({
-      openLoginPanel: true
+      isOpenLoginPanel: true
     });
   }
   closeLoginPanel() {
     this.setState({
-      openLoginPanel: false
+      isOpenLoginPanel: false
     });
   }
   tryLogin(showNotification) {
     let username = null;
     let password = null;
 
-    if (this.state.openLoginPanel) {
+    if (this.state.isOpenLoginPanel) {
       username = $('#login-input')[0].value;
       password = $('#password-input')[0].value;
     }
@@ -97,7 +96,7 @@ class Login extends React.Component {
   render() {
     let loginPanel = null;
 
-    if (this.state.openLoginPanel) {
+    if (this.state.isOpenLoginPanel) {
       loginPanel = (
         <div id="login-prepanel" className="login-prepanel-enabled" onClick={
               (e) => {

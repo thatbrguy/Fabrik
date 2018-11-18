@@ -92,7 +92,7 @@ To install Docker for Mac [click here](https://docs.docker.com/docker-for-mac/in
     git clone --recursive https://github.com/Cloud-CV/Fabrik.git && cd Fabrik
     ```
 
-3. Run the following script to configure settings to `localhost`
+3. Run the following script to change settings to `localhost`
 
     ```
     sh ./settings/local_setup.sh
